@@ -1,10 +1,8 @@
 {
   "name": "react-nyt",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "dependencies": {
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
@@ -24,5 +22,19 @@
   },
   "devDependencies": {
     "webpack": "^1.13.1"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christiancasal/react-nyt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christiancasal/react-nyt/issues"
+  },
+  "homepage": "https://github.com/christiancasal/react-nyt#readme"
 }

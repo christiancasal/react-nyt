@@ -9,4 +9,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'New York Times Search' });
 });
 
+//TODO routes to update the api go here?
+
 module.exports = router;
