@@ -18,5 +18,6 @@ var articlesSchema = mongoose.Schema({
 var Articles = mongoose.model('Articles', articlesSchema);
 
 
+
 //export model
 module.exports = [Articles, db];
