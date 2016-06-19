@@ -24,6 +24,7 @@ class Search extends React.Component {
                 <h4 className="" >End Year</h4>
                 <input type="number" className="form-control " id="end" required />
               </div>
+
               <div className="pull-right">
                 <button type="button" className="btn btn-danger btn-sm">
                   <h4>Submit</h4>
@@ -36,5 +37,4 @@ class Search extends React.Component {
     );
   }
 }
-
 module.exports = Search;

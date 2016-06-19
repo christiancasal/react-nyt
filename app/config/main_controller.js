@@ -11,7 +11,11 @@ router.get('/', function(req, res, next) {
   res.render('./public/index.html');
 });
 
-// router.get('/')
+//get saved articles
+router.get('/api/saved', function(req, res){
+
+});
+
 
 //TODO routes to update the api go here?
 
