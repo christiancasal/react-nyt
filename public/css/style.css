@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.panel-body a
+{
+    word-break:break-all;
+}

@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Search from './components/search/search.js';
 
-class Profile extends React.Component {
+class Main extends React.Component {
   render(){
     return (
-        <h2>hello world</h2>
+        <div className="main-container">
+          <div className="row">
+            <div className="col-md-12">
+              <Search />
+            </div>
+          </div>
+        </div>
     );
   }
 }
-ReactDOM.render(<Profile />, document.getElementById('app'));
+
+ReactDOM.render(
+  <Main />, document.getElementById('app'));

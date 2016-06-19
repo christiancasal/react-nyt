@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: "public/bundle.js"
   },
+  watch: true,
 
 
   // This will be what we do
