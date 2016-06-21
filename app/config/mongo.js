@@ -9,9 +9,18 @@ db.once('open', function() {
 });
 //define schema
 var articlesSchema = mongoose.Schema({
-  title: String,
-  date: String,
-  url: String
+  title: {
+    type: String,
+    trim: true
+  },
+  date: {
+    type: String,
+    trim: true
+  },
+  url: {
+    type: String,
+    trim: true
+  }
 });
 
 //define model

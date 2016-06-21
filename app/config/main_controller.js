@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 //get saved articles
-router.get('/api/saved', function(req, res){
+router.get('/api/get', function(req, res){
 
 });
 
