@@ -20586,6 +20586,10 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _display_results = __webpack_require__(251);
+
+	var _display_results2 = _interopRequireDefault(_display_results);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20614,78 +20618,35 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 
-	      this.addResults.bind(this);
-
 	      this.setState({
 	        data: this.props.data
 	      });
 	    }
 	    //TODO create a render results fucntion to catch all the results from the api call, then pass it into the render function. map it over the state.data
 
-	  }, {
-	    key: 'renderHome',
-	    value: function renderHome() {}
-	  }, {
-	    key: 'addResults',
-	    value: function addResults() {
-	      console.log('hello im in render results');
-	      console.log(this);
-
-	      var data = this.props.data;
-
-
-	      console.log(data);
-
-	      if (data.length === 0) {}
-	      // for (var i = 0; i < this.state.data.length; i++) {
-	      //   console.log(this.state.data[i])
-	      // }
-	    }
 	    //make render function as small as possible
 
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var data = this.props.data;
+
+	      var articles_container = [];
+
+	      for (var i = 0; i < data.length; i++) {
+	        console.log(data[i]);
+	        articles_container.push(_react2.default.createElement(_display_results2.default, {
+	          key: data[i].id,
+	          abs: data[i].abs,
+	          pub_date: data[i].pub_date,
+	          url: data[i].url
+	        }));
+	      }
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'list-group-item col-md-12' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col-md-12' },
-	          _react2.default.createElement(
-	            'h5',
-	            { className: 'col-md-12' },
-	            console.log('this is results.js prop data'),
-	            console.log(this.props.data),
-	            console.log('this is results.js state data'),
-	            console.log(this.state.data)
-	          ),
-	          _react2.default.createElement(
-	            'h6',
-	            { className: 'col-md-8' },
-	            'This will be the ...'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'btn-group col-md-4' },
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'pull-right' },
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'btn btn-default' },
-	                'Save'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'btn btn-default' },
-	                'View Article'
-	              )
-	            )
-	          )
-	        ),
-	        console.log('add this'),
-	        this.addResults()
+	        articles_container
 	      );
 	    }
 	  }]);
@@ -27466,6 +27427,113 @@
 
 	exports.default = (0, _createRouterHistory2.default)(_createHashHistory2.default);
 	module.exports = exports['default'];
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(38);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// import helper from '../../../utils/helper.js';
+
+	var DisplayResults = function (_React$Component) {
+	  _inherits(DisplayResults, _React$Component);
+
+	  function DisplayResults(props) {
+	    _classCallCheck(this, DisplayResults);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DisplayResults).call(this, props));
+
+	    _this.state = {
+	      data: _this.props.data
+	    };
+	    return _this;
+	  }
+
+	  _createClass(DisplayResults, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+
+	      this.setState({
+	        data: this.props.data
+	      });
+	    }
+	    //make render function as small as possible
+
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'list-group-item col-md-12' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-md-12' },
+	          _react2.default.createElement(
+	            'h5',
+	            { className: 'col-md-12' },
+	            this.props.abs
+	          ),
+	          _react2.default.createElement(
+	            'h6',
+	            { className: 'col-md-8' },
+	            this.props.pub_date
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'btn-group col-md-4' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'pull-right' },
+	              _react2.default.createElement(
+	                'a',
+	                null,
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'btn btn-default' },
+	                  'Save'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                { href: this.props.url },
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'btn btn-default' },
+	                  'View Article'
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return DisplayResults;
+	}(_react2.default.Component);
+	//props
+
+
+	module.exports = DisplayResults;
 
 /***/ }
 /******/ ]);

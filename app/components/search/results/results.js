@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DisplayResults from './display_results.js';
 // import helper from '../../../utils/helper.js';
 
 class Results extends React.Component{
@@ -12,50 +13,32 @@ class Results extends React.Component{
 
   componentWillMount(){
 
-    this.addResults.bind(this);
-
     this.setState({
       data: this.props.data
     });
   }
   //TODO create a render results fucntion to catch all the results from the api call, then pass it into the render function. map it over the state.data
-  renderHome(){
 
-  }
-
-  addResults(){
-    console.log('hello im in render results');
-    console.log(this);
-
-    let {data} = this.props
-
-    console.log(data);
-
-    if(data.length === 0){
-
-    }
-    // for (var i = 0; i < this.state.data.length; i++) {
-    //   console.log(this.state.data[i])
-    // }
-  }
 //make render function as small as possible
 
   render(){
+      let {data} = this.props
+      let articles_container = []
+
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i])
+        articles_container.push(
+          <DisplayResults
+            key={data[i].id}
+            abs={data[i].abs}
+            pub_date={data[i].pub_date}
+            url={data[i].url}
+        />)
+      }
+
       return (
           <div className="list-group-item col-md-12">
-            <div className="col-md-12">
-              <h5 className="col-md-12">{console.log('this is results.js prop data')}{console.log(this.props.data)}
-              {console.log('this is results.js state data')}{console.log(this.state.data)}</h5>
-              <h6 className="col-md-8">This will be the ...</h6>
-                <div className='btn-group col-md-4'>
-                  <a className='pull-right'>
-                    <button className="btn btn-default">Save</button>
-                    <button className="btn btn-default">View Article</button>
-                  </a>
-                </div>
-            </div>
-            {console.log('add this')}
-            {this.addResults()}
+            {articles_container}
           </div>
       )
   }
