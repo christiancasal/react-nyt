@@ -2,12 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Search from './components/search/search.js';
 
-import { Router, Route, Link } from 'react-router';
 
-
-// const Router = require('react-router').Router;
-// const Route = require('react-router').Route;
-// const Link = require('react-router').Link;
 
 class Main extends React.Component {
   render(){
@@ -20,6 +15,8 @@ class Main extends React.Component {
     );
   }
 }
+
+module.exports = Main;
 
 ReactDOM.render(
   <Main />, document.getElementById('app')

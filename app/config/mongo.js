@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+// console.log(mongoose);
 mongoose.connect('mongodb://localhost/articles_db');
 
 var db = mongoose.connection;
@@ -29,4 +30,4 @@ var Articles = mongoose.model('Articles', articlesSchema);
 
 
 //export model
-module.exports = [Articles, db];
+module.exports = Articles;

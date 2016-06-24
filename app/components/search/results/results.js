@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DisplayResults from './display_results.js';
-// import helper from '../../../utils/helper.js';
+
 
 class Results extends React.Component{
   constructor(props) {
@@ -17,16 +17,12 @@ class Results extends React.Component{
       data: this.props.data
     });
   }
-  //TODO create a render results fucntion to catch all the results from the api call, then pass it into the render function. map it over the state.data
-
-//make render function as small as possible
 
   render(){
       let {data} = this.props
       let articles_container = []
 
       for (var i = 0; i < data.length; i++) {
-        console.log(data[i])
         articles_container.push(
           <DisplayResults
             key={data[i].id}
