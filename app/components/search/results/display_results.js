@@ -19,9 +19,6 @@ class DisplayResults extends React.Component{
 //make render function as small as possible
 
   saveArticle(){
-    console.log('hello this is save article');
-    console.log(this)
-
     helper.saveData(this.props)
   }
 

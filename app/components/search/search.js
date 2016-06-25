@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Results from './results/results.js';
 import helper from '../../utils/helper.js';
 
@@ -34,7 +33,7 @@ class Search extends React.Component {
 
     helper.performApiCall(formValues.search, formValues.start, formValues.end, (function cb(res){
 
-          console.log(res);
+          // console.log(res);
 
           for(var i = 0; i < res.length; i++){
             let apiObj = {
@@ -44,7 +43,6 @@ class Search extends React.Component {
               abs: res[i].headline.main
             }
             apiArr.push(apiObj)
-            console.log(apiArr);
           }
 
           this.setState({
