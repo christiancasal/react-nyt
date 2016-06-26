@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
+import helper from '../../utils/helper.js';
 
-class Header extends React.Component {
+export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      article_data : []
+    };
+
+  }
   render(){
+    // console.log(this);
+
     return(
     <nav classNameName="navbar navbar-inverse" role="navigation">
       <div className="container-fluid">
@@ -30,5 +41,3 @@ class Header extends React.Component {
     )
   }
 }
-
-module.exports = Header;

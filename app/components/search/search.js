@@ -2,7 +2,7 @@ import React from 'react';
 import Results from './results/results.js';
 import helper from '../../utils/helper.js';
 
-class Search extends React.Component {
+export default class Search extends React.Component {
   //the constructor will taake in props whos state will need to change
   constructor(props){
     super(props);
@@ -92,5 +92,3 @@ class Search extends React.Component {
   }//end of render
 }
 //props
-
-module.exports = Search;

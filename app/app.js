@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Search from './components/search/search.js';
-import Header from './components/header.js';
+import Header from './components/header/header.js';
 import Saved from './components/saved/saved.js';
-import SavedResults from './components/saved/saved_results.js';
+
 
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 

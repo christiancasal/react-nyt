@@ -1,34 +1,32 @@
 import React from 'react';
 import helper from '../../utils/helper.js';
 
-class SavedResults extends React.Component{
+export default class SavedResults extends React.Component{
   constructor(props) {
     super(props);
       this.state = {
-        data : this.props.data
+        data : []
       }
   }
 
   componentWillMount(){
+    this.deleteArticle();
+  }
 
-    this.setState({
-      data: this.props.data
-    });
+  deleteArticle(article_id){
+    console.log(article_id);
   }
   render(){
 
       return (
           <div className="list-group-item col-md-12">
             <div className="col-md-12">
-              <h5 className="col-md-12">
-                cmonn
-                {console.log('cmonnn')}
-                {console.log(this)}
-                {this.props.abs}</h5>
+              <h5 className="col-md-12">{this.props.abs}</h5>
               <h6 className="col-md-8">{this.props.pub_date}</h6>
                 <div className='btn-group col-md-4'>
-                  <div className='pull-right'>
-                    <a>
+                  <div className='pull-right article-buttons'>
+                    {console.log(this.props.url)}
+                    <a onClick={this.deleteArticle(this.props.url)}>
                       <button className="btn btn-default">Delete</button>
                     </a>
                     <a href={this.props.url} target="_blank">
@@ -41,5 +39,3 @@ class SavedResults extends React.Component{
       )
   }
 }
-//props
-module.exports = SavedResults;

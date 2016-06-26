@@ -36,6 +36,9 @@ router.post('/api/post', function(req, res){
   });
 });
 
+router.delete('/api/delete', function(req, res){
+  res.redirect('/saved');
+})
 
 //TODO routes to update the api go here?
 

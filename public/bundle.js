@@ -68,10 +68,6 @@
 
 	var _saved2 = _interopRequireDefault(_saved);
 
-	var _saved_results = __webpack_require__(254);
-
-	var _saved_results2 = _interopRequireDefault(_saved_results);
-
 	var _reactRouter = __webpack_require__(192);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -20442,6 +20438,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -20603,7 +20603,8 @@
 	}(_react2.default.Component);
 	//props
 
-	module.exports = Search;
+
+	exports.default = Search;
 
 /***/ },
 /* 169 */
@@ -20826,19 +20827,11 @@
 	    queryURL = queryURL + term + '&begin_date=' + startYear + '&end_date=' + endYear;
 	    _axios2.default.get(queryURL).then(function (res) {
 	      var query = res.data.response.docs;
-
-	      console.log(query.length);
-	      console.log(query[0].headline.main);
-	      console.log(query[0].pub_date);
-	      console.log(query[0].web_url);
-
 	      return cb(query);
 	    });
 	  },
 	  saveData: function saveData(data) {
 	    //this will save user selected articles to mongo db
-	    console.log('does log data work?');
-	    console.log(data);
 	    _axios2.default.post('/api/post', data).then(function (res) {
 	      return res;
 	    });
@@ -20846,8 +20839,6 @@
 	  getData: function getData(cb) {
 	    //this will retrieve all user selected articles from mongo db
 	    _axios2.default.get('/api/get').then(function (res) {
-	      console.log('this is api/get in axios');
-	      console.log(res.data);
 	      return cb(res.data);
 	    });
 	  },
@@ -22075,6 +22066,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -22082,6 +22077,10 @@
 	var _react2 = _interopRequireDefault(_react);
 
 	var _reactRouter = __webpack_require__(192);
+
+	var _helper = __webpack_require__(171);
+
+	var _helper2 = _interopRequireDefault(_helper);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22094,15 +22093,23 @@
 	var Header = function (_React$Component) {
 	  _inherits(Header, _React$Component);
 
-	  function Header() {
+	  function Header(props) {
 	    _classCallCheck(this, Header);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Header).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Header).call(this, props));
+
+	    _this.state = {
+	      article_data: []
+	    };
+
+	    return _this;
 	  }
 
 	  _createClass(Header, [{
 	    key: 'render',
 	    value: function render() {
+	      // console.log(this);
+
 	      return _react2.default.createElement(
 	        'nav',
 	        { classNameName: 'navbar navbar-inverse', role: 'navigation' },
@@ -22164,7 +22171,7 @@
 	  return Header;
 	}(_react2.default.Component);
 
-	module.exports = Header;
+	exports.default = Header;
 
 /***/ },
 /* 192 */
@@ -27683,6 +27690,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -27718,46 +27729,61 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Saved).call(this, props));
 
 	    _this.state = {
-	      data: _this.props.data
+	      data: []
 	    };
+
 	    return _this;
 	  }
 
 	  _createClass(Saved, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      this.setState({
-	        data: this.props.data
-	      });
+	      // this.getArticles.bind(this);
+	      this.getArticles();
+	    }
+	  }, {
+	    key: 'getArticles',
+	    value: function getArticles() {
+	      var saved_articles = [];
+
+	      _helper2.default.getData(function cb(res) {
+	        for (var i = 0; i < res.length; i++) {
+
+	          var obj = {
+	            res_id: res[i]._id,
+	            abs: res[i].title,
+	            pub_date: res[i].date,
+	            url: res[i].url
+	          };
+
+	          saved_articles.push(obj);
+	        }
+	        this.setState({
+	          data: saved_articles
+	        });
+	      }.bind(this));
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var data = this.props.data;
+	      var data = this.state.data;
 
-	      var saved_articles = [];
+	      var container = [];
 
-	      _helper2.default.getData(function cb(res) {
-	        this.props = res;
-	        for (var i = 0; i < res.length; i++) {
-	          console.log('this is data');
-	          console.log(this);
-	          saved_articles.push(_react2.default.createElement(_saved_results2.default, {
-	            key: this.props[i]._id,
-	            abs: this.props[i].title,
-	            pub_date: this.props[i].date,
-	            url: this.props[i].url
-	          }));
-	          console.log(saved_articles);
-	        }
-	      }.bind(this));
+	      for (var i = 0; i < data.length; i++) {
+	        container.push(_react2.default.createElement(_saved_results2.default, {
+	          key: data[i].res_id,
+	          abs: data[i].abs,
+	          pub_date: data[i].pub_date,
+	          url: data[i].url
+	        }));
+	      }
 
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
 	        _react2.default.createElement(_header2.default, null),
-	        _react2.default.createElement(_saved_results2.default, null),
-	        saved_articles
+	        container
 	      );
 	    }
 	  }]);
@@ -27765,13 +27791,17 @@
 	  return Saved;
 	}(_react2.default.Component);
 
-	module.exports = Saved;
+	exports.default = Saved;
 
 /***/ },
 /* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -27800,7 +27830,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SavedResults).call(this, props));
 
 	    _this.state = {
-	      data: _this.props.data
+	      data: []
 	    };
 	    return _this;
 	  }
@@ -27808,10 +27838,12 @@
 	  _createClass(SavedResults, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-
-	      this.setState({
-	        data: this.props.data
-	      });
+	      this.deleteArticle();
+	    }
+	  }, {
+	    key: 'deleteArticle',
+	    value: function deleteArticle(article_id) {
+	      console.log(article_id);
 	    }
 	  }, {
 	    key: 'render',
@@ -27826,9 +27858,6 @@
 	          _react2.default.createElement(
 	            'h5',
 	            { className: 'col-md-12' },
-	            'cmonn',
-	            console.log('cmonnn'),
-	            console.log(this),
 	            this.props.abs
 	          ),
 	          _react2.default.createElement(
@@ -27841,10 +27870,11 @@
 	            { className: 'btn-group col-md-4' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'pull-right' },
+	              { className: 'pull-right article-buttons' },
+	              console.log(this.props.url),
 	              _react2.default.createElement(
 	                'a',
-	                null,
+	                { onClick: this.deleteArticle(this.props.url) },
 	                _react2.default.createElement(
 	                  'button',
 	                  { className: 'btn btn-default' },
@@ -27869,10 +27899,8 @@
 
 	  return SavedResults;
 	}(_react2.default.Component);
-	//props
 
-
-	module.exports = SavedResults;
+	exports.default = SavedResults;
 
 /***/ }
 /******/ ]);
