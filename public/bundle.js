@@ -27834,16 +27834,14 @@
 	    };
 	    return _this;
 	  }
+	  // componentWillMount will always run once he component is added
+	  // componentWillMount(){
+	  // }
 
 	  _createClass(SavedResults, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.deleteArticle();
-	    }
-	  }, {
 	    key: 'deleteArticle',
-	    value: function deleteArticle(article_id) {
-	      console.log(article_id);
+	    value: function deleteArticle() {
+	      console.log(this.props.url);
 	    }
 	  }, {
 	    key: 'render',
@@ -27871,10 +27869,9 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'pull-right article-buttons' },
-	              console.log(this.props.url),
 	              _react2.default.createElement(
 	                'a',
-	                { onClick: this.deleteArticle(this.props.url) },
+	                { onClick: this.deleteArticle.bind(this) },
 	                _react2.default.createElement(
 	                  'button',
 	                  { className: 'btn btn-default' },

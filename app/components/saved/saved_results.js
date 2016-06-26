@@ -8,13 +8,12 @@ export default class SavedResults extends React.Component{
         data : []
       }
   }
+  // componentWillMount will always run once he component is added
+  // componentWillMount(){
+  // }
 
-  componentWillMount(){
-    this.deleteArticle();
-  }
-
-  deleteArticle(article_id){
-    console.log(article_id);
+  deleteArticle(){
+    console.log(this.props.url);
   }
   render(){
 
@@ -25,8 +24,7 @@ export default class SavedResults extends React.Component{
               <h6 className="col-md-8">{this.props.pub_date}</h6>
                 <div className='btn-group col-md-4'>
                   <div className='pull-right article-buttons'>
-                    {console.log(this.props.url)}
-                    <a onClick={this.deleteArticle(this.props.url)}>
+                    <a onClick={this.deleteArticle.bind(this)}>
                       <button className="btn btn-default">Delete</button>
                     </a>
                     <a href={this.props.url} target="_blank">
