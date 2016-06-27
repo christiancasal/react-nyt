@@ -13,7 +13,9 @@ export default class SavedResults extends React.Component{
   // }
 
   deleteArticle(){
-    console.log(this.props.url);
+    let data = this.props.abs
+    console.log(data);
+    helper.deleteData(data);
   }
   render(){
 

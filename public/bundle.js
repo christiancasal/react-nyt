@@ -20844,6 +20844,10 @@
 	  },
 	  deleteData: function deleteData(data) {
 	    //this will delete a user selected article to mongo db
+	    console.log(data);
+	    _axios2.default.post('/api/' + data, data).then(function () {
+	      return;
+	    });
 	  }
 	};
 	module.exports = helper;
@@ -27841,7 +27845,9 @@
 	  _createClass(SavedResults, [{
 	    key: 'deleteArticle',
 	    value: function deleteArticle() {
-	      console.log(this.props.url);
+	      var data = this.props.abs;
+	      console.log(data);
+	      _helper2.default.deleteData(data);
 	    }
 	  }, {
 	    key: 'render',

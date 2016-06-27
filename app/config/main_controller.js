@@ -36,10 +36,11 @@ router.post('/api/post', function(req, res){
   });
 });
 
-router.delete('/api/delete', function(req, res){
-  res.redirect('/saved');
+router.post('/api/:deleted', function(req, res){
+  console.log('this is the express delete route');
+  console.log(req.params.deleted);
+  Article.find({url: req.body})
+  res.end();
 })
-
-//TODO routes to update the api go here?
 
 module.exports = router;
