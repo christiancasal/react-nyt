@@ -37,10 +37,15 @@ router.post('/api/post', function(req, res){
 });
 
 router.post('/api/:deleted', function(req, res){
-  console.log('this is the express delete route');
   console.log(req.params.deleted);
-  Article.find({url: req.body})
-  res.end();
+
+  Article.remove({title: req.params.deleted }, function(err){
+    if(err){
+      console.log(err);
+    }
+    console.log("did this run");
+    res.end();
+  });
 })
 
 module.exports = router;
